@@ -1,9 +1,21 @@
-const addButton = document.getElementById("addToDo");
-const inputField = document.getElementById("input-field");
-const toDoContainer = document.getElementById("ToDosContainer");
+let addToDoButton = document.getElementById('addToDo');
+let toDoContainer = document.getElementById('toDoContainer');
+let inputField = document.getElementById('inputField');
 
-function buttonClick(){
-    toDoContainer.innerHTML += '<div class="to-do-card"><h2>Item X</h2></div>'
-}
+addToDoButton.addEventListener('click', function(a){
+    a.preventDefault()
+    var paragraph = document.createElement('p')
+    paragraph.classList.add('paragraph-styling')
+    console.log(inputField.value);
+    paragraph.innerText = inputField.value;
+    toDoContainer.appendChild(paragraph);
+    inputField.value = "";
 
-addButton.addEventListener("click", buttonClick)
+
+    paragraph.addEventListener('click', function(){
+        paragraph.style.textDecoration = "line-through";
+    })
+    paragraph.addEventListener('dblclick', function(){
+        toDoContainer.removeChild(paragraph);
+    })
+})
